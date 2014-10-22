@@ -1,6 +1,5 @@
 <?php 
 	include('database.php');
-	header('Content-Type: application/json');
 /**
 * 
 */
@@ -77,18 +76,18 @@ class apiCalls
 
 	function getExercise($userID)	{
 			
-		 // $statement = $this->pdo->prepare("SELECT * FROM `exercise` WHERE userID= '".$userID."'");
-	  //   if (!$statement->execute()) {
-	  //   	print_r("Error in query ".$this->pdo>errorInfo());
-	  //   	break;
-	  //   }
+		 $statement = $this->pdo->prepare("SELECT * FROM `exercise` WHERE userID= '".$userID."'");
+	    if (!$statement->execute()) {
+	    	print_r("Error in query ".$this->pdo>errorInfo());
+	    	break;
+	    }
 
-	  //   try {	    	
-	  //   	$result = $statement->fetchAll(PDO::FETCH_ASSOC);
-	  //   } catch (PDOException $e) {
-	  //   	echo "error in fetch " . $e;
-	  //   }	   
-	   return json_encode($userID);
+	    try {	    	
+	    	$result = $statement->fetchAll();
+	    } catch (PDOException $e) {
+	    	echo "error in fetch " . $e;
+	    }	   
+	   return $result;
 	}
 }
 
