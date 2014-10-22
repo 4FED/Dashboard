@@ -1,5 +1,6 @@
 <?php 
 	include('database.php');
+	header('Content-Type: application/json');
 /**
 * 
 */
@@ -83,11 +84,11 @@ class apiCalls
 	    }
 
 	    try {	    	
-	    	$result = $statement->fetchAll();
+	    	$result = $statement->fetchAll(PDO::FETCH_ASSOC);
 	    } catch (PDOException $e) {
 	    	echo "error in fetch " . $e;
 	    }	   
-	   return $result;
+	   return json_encode($result);
 	}
 }
 
