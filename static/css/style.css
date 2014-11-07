@@ -1,0 +1,46 @@
+main#home{
+	width: 95%;
+	margin-left: auto;
+	margin-right: auto;
+}
+#account{
+	width: 30%;
+	height: 40%;
+	display: inline-block;
+	border-radius: 10px;
+	background-color: #969696;
+	vertical-align: top;
+}
+#account > img{
+	width: 20%;
+}
+#account > span{
+	width: 100%;
+	background-color: #fff;
+	display: block;
+}
+#information{
+	vertical-align: top;
+	width: 65%;
+	height: 40%;
+	margin-left: 4%;	
+	display: inline-block;
+	border-radius: 10px;
+	background-color: #969696;
+}
+#information > p{
+	width: 65%;
+	display: inline-block;
+}
+#information > span{
+	display: inline-block;
+	width: 25%;
+	float: right;
+}
+.patient{
+	display: inline-block;	
+	width: 20%;
+}
+.patient > img{
+	width: 80%;
+}
