@@ -1,18 +1,19 @@
-var ocdWebApp = ocdWebApp || {};
+var ocdDashboard = ocdDashboard || {};
 (function () {
 	Parse.initialize("e2pCNYD20d5ynvUPKyUud5G20evDRI4pmHiqrvPw", "6IEcqXamMkjJsssIaFPiTDKH1azNB6wOtR5kuAIP");
 
-	ocdWebApp.User = {
+	ocdDashboard.User = {
 		signUp: function () {
 			var user = new Parse.User();
 
+			var amcId = document.registerForm.amcId.value;
 		    var email = document.registerForm.email.value;
 		    var password = document.registerForm.password.value;
 		    var initials = document.registerForm.initials.value;
 		    var firstname = document.registerForm.firstname.value;
 		    var surname = document.registerForm.surname.value;
 
-		    user.set("username", email);
+		    user.set("username", amcId);
 		    user.set("email", email);
 		    user.set("password", password);
 		    user.set("initials", initials);
@@ -23,7 +24,7 @@ var ocdWebApp = ocdWebApp || {};
 		    user.signUp(null, {
 			    success: function(object) {
 				    alert("nieuwe gebruiker is aangemaakt, vergeet niet je email te verifiseren");
-				    ocdWebApp.User.logout();
+				    ocdDashboard.User.logout();
 			    },
 			    error: function(model, error) {
 			    	alert('Failed to create new object, with error code: ' + error.message);
@@ -31,13 +32,13 @@ var ocdWebApp = ocdWebApp || {};
 			});
 		},
 		login: function () {	
-			var email = document.loginForm.email.value;
+			var amcId = document.loginForm.amcId.value;
 		    var password = document.loginForm.password.value;
 
-			Parse.User.logIn(email, password, {
+			Parse.User.logIn(amcId, password, {
 			  success: function(user) {
 			  	console.log("succes" + user);
-				    window.location.href = "http://localhost/4fed/Webapp/#home";
+				    window.location.href = "http://localhost/4fed/Dashboard/home.html";
 			  },
 			  error: function(user, error) {
 			    console.log('login Failed ' + error.message);
@@ -50,7 +51,7 @@ var ocdWebApp = ocdWebApp || {};
 		},
 		logout: function () {
 			Parse.User.logOut();
-			window.location.href = "http://localhost/4fed/Webapp/#user/login";
+			window.location.href = "http://localhost/4fed/Dashboard/#user/login";
 			sessionStorage.clear();
 			localStorage.clear();
 		}

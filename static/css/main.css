@@ -1,3 +1,9 @@
+section, .userForm, .doctorEl{
+	display: none;
+}
+section.active, form.active{
+	display: block;
+}
 body{
 	margin: 0;
 	padding: 0;

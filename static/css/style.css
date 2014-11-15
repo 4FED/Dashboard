@@ -1,4 +1,23 @@
-main#home{
+/*----------------------------------login/register--------------------*/
+section.user{
+	display: block;
+	height: 100%;
+	width: 100%;
+}
+form.userForm{
+	margin: auto;
+	width: 30%;
+	height: 0%;
+	padding:0 0 30% 0;
+}
+form.userForm > input[type="button"]{
+	display: block;
+}
+form.userForm label{
+	display: block;
+}
+/*----------------------------------Home-----------------------------*/
+section.home{
 	width: 95%;
 	margin-left: auto;
 	margin-right: auto;

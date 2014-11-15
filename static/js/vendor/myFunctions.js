@@ -13,28 +13,13 @@ var myFunctions = {
 		console.log(attribute);
 		switch(attribute){
 			case "loginButton":
-				ocdWebApp.User.login();
+				ocdDashboard.User.login();
 				break;
 			case "registreerButton":
-				ocdWebApp.User.signUp();
+				ocdDashboard.User.signUp();
 				break;
 			case "logoutButton":
-				ocdWebApp.User.logout();
-				break;
-			case "newExerciseButton":
-				ocdWebApp.Exercise.create();
-				break;
-			case "finishExerciseButton":
-				SHOTGUN.fire("finishExercise");
-				break;
-			case "searchDoctorButton":
-				ocdWebApp.Doctor.get('search');
-				break;
-			case "inviteDoctorButton":
-				ocdWebApp.Doctor.set();
-				break;
-			case "removeDoctorButton":
-				ocdWebApp.Doctor.remove();
+				ocdDashboard.User.logout();
 				break;
 		}
 	},

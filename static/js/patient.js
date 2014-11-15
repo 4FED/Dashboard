@@ -9,7 +9,15 @@ var ocdDashboard = ocdDashboard || {};
 			patientQuery.equalTo("hasDoctor", user.id);
 			patientQuery.find({
 				success: function(patienten) {
-				  	console.log(patienten);
+				  	_.each(patienten, function(patient){
+				  		var object = {};
+				  		object.id = patient.id;
+				  		object.initials = patient.get("initials");
+				  		object.firstName = patient.get("firstname");
+				  		object.surname = patient.get("surname");
+				  		ocdDashboard.Patient.content.push(object);
+				  	});
+				  	SHOTGUN.fire("getPatienten")
 				},
 				error: function(patienten, error) {
 					console.log('get patienten failed ' + error.message);
@@ -18,5 +26,15 @@ var ocdDashboard = ocdDashboard || {};
 		},
 		content: [
 		],
+		directives: {
+		    myName:{
+		    	text: function() {
+		    		return this.initials + " " + this.surname; 
+		    	}
+		    },
+		    myLink:{
+		    	href: function() { return "patient.html#" + this.id; }
+		    },
+		}
 	}	
 })();
