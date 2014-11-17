@@ -4,6 +4,12 @@ section, .userForm, .doctorEl{
 section.active, form.active{
 	display: block;
 }
+main{
+	width: 95%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 1.5em;	
+}
 body{
 	margin: 0;
 	padding: 0;

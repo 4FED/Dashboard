@@ -17,11 +17,7 @@ form.userForm label{
 	display: block;
 }
 /*----------------------------------Home-----------------------------*/
-section.home{
-	width: 95%;
-	margin-left: auto;
-	margin-right: auto;
-}
+
 #account{
 	width: 30%;
 	height: 40%;
@@ -56,6 +52,9 @@ section.home{
 	width: 25%;
 	float: right;
 }
+#patienten{
+	width: 100%;
+}
 .patient{
 	display: inline-block;	
 	width: 20%;
@@ -64,3 +63,82 @@ section.home{
 	width: 80%;
 }
 /*---------------------------------------patientOverzicht------------------------*/
+div#patientDetails{
+	background-color: #fff;
+	height: 30%;
+	display: block;
+	margin: auto auto 2em auto;
+}
+div#patientDetails > img {
+	margin: auto;
+	width: 10%;
+	vertical-align: middle;
+}
+div#patientDetails > ul{
+	margin-right: 1em;
+	display: inline-block;
+}
+div#patientDetails > ul:nth-last-of-type(2){
+	margin-left: 10em; 
+}
+div#patientDetails > nav > ul li{
+	display: inline-block;
+	padding-right: .5em; 
+	height: 2em;
+	line-height: 2em;
+	background-color: #fff;
+}
+div#patientDetails > nav > ul li.selected{
+	background-color: #969696;
+}
+/*---------------------------------exercises----------------------------------------*/
+.exercisesSummary{
+	table-layout: fixed;
+	height: 70%;
+	width: 100%;
+	border-collapse: collapse;
+  	border-spacing: 0;
+  	font-size: 1em;
+}
+.exercisesSummary .exercisesList{
+	width: 100%;
+	display: block;
+}
+.exercisesSummary h3{
+	display: inline-block;
+	height: 3em;
+	color: 	white;
+	background-color: #969696;
+  	font-size: 1.5em;	
+	margin: 0;
+	padding: 0;
+	vertical-align: top;
+	border-bottom: 0.12em solid #969696;
+}
+.exercisesSummary h3:first-child{
+	width: 70%;
+	text-align: left;	
+}
+.exercisesSummary h3:nth-child(2){
+	width: 29%;
+	border-left: 0.12em solid #4b4b4b;
+	text-align: left;	
+}
+.exercisesSummary .exercisesList p{
+	display: inline-block;
+	height: 3em;
+	line-height: 3em;
+	margin: 0;
+	padding: 0;	
+	border-bottom: 0.12em solid #969696;
+}
+.exercisesSummary .exercisesList p:nth-child(1n){
+	width: 68%;
+	text-align: left;
+	padding: 0 0 0 2%;
+}
+.exercisesSummary .exercisesList p:nth-child(2n){
+	width: 27%;
+	text-align: center;
+	border-left: 0.12em solid #969696;	
+}

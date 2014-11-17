@@ -20,7 +20,7 @@ var ocdDashboard = ocdDashboard || {};
 			var reroute = window.location.replace("http://localhost/4fed/Dashboard/#user/login");
 			routie({
 	    		'user/:type': function (type) {
-	    		console.log(type);	    			
+	    			console.log(type);	    			
 	    			sections.toggle("user", "content");
 	    			sections.toggle(type, "userForm");
 	    			if (type == "login" && Parse.User.current()) {	    				

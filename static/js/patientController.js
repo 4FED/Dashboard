@@ -5,7 +5,10 @@ var ocdDashboard = ocdDashboard || {};
 
 	var sections = {
 		home: function (){
-			Transparency.render(myFunctions.getOneEl(".patient"), ocdDashboard.Patient.content, ocdDashboard.Patient.directives);
+			Transparency.render(myFunctions.getOneEl(".patient"), ocdDashboard.Patient.details, ocdDashboard.Patient.directives);
+		},
+		detail: function () {
+			// body...
 		},
 		toggle: function (show, hide) {
 			var show = myFunctions.getOneEl("." + show);
@@ -22,14 +25,17 @@ var ocdDashboard = ocdDashboard || {};
 		init: function () {
 			var reroute = "http://localhost/4fed/Dashboard/#user/login"
 			routie({
-	    		':id': function() {	
+	    		':id': function(id) {	
 	    			if (Parse.User.current()) {
-	    				// SHOTGUN.listen("getPatienten", sections.home);
-	    				// ocdDashboard.Patient.get();
-	    				sections.toggle("home", "content");
+	    				SHOTGUN.listen("getDetails", ocdDashboard.router.reroute);
+	    				ocdDashboard.Patient.getDetails(id);
 	    			}else{
 	    				window.location.replace(reroute);
 	    			};
+	    		},
+	    		exercisesSummary: function () {
+	    			SHOTGUN.listen("getExercises", sections.toggle("exerciseSummary", "content"));
+	    			ocdDashboard.Patient.getExercises();	
 	    		},
 	    		'': function(){
 	    			if (Parse.User.current()) {
@@ -39,6 +45,9 @@ var ocdDashboard = ocdDashboard || {};
 	    			};
 	    		}
 			});
+		},
+		reroute: function() {
+			window.location.replace("http://localhost/4fed/Dashboard/patient.html#exercisesSummary")
 		} 
 	};
 	ocdDashboard.router.init();

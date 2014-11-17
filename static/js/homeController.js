@@ -8,7 +8,7 @@ var ocdDashboard = ocdDashboard || {};
 	// sets router parameters
 	var sections = {
 		home: function (){
-			Transparency.render(myFunctions.getOneEl(".patient"), ocdDashboard.Patient.content, ocdDashboard.Patient.directives);
+			Transparency.render(myFunctions.getOneEl("#patienten"), JSON.parse(sessionStorage.getItem("patienten")), ocdDashboard.Patient.directives);
 		},
 		toggle: function (show, hide) {
 			var show = myFunctions.getOneEl("." + show);

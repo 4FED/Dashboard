@@ -14,14 +14,14 @@
 				<li><input type="text" value="Zoeken"></li>
 			</ul>
 		</header>
-		<section class="home content">
+		<main>
 			<div id="patientDetails">
-				<img src="" alt="profilePicture">
+				<img src="static/images/icons/maleIcon.svg" alt="profilePicture">
 				<ul class="detailHeaders">
-					<li>Geboortedatum</li>
-					<li>ID-Nummer</li>
-					<li>In behandeling voor</li>
-					<li>Soort therapie</li>
+					<li>Geboortedatum:</li>
+					<li>ID-Nummer:</li>
+					<li>In behandeling voor:</li>
+					<li>Soort therapie:</li>
 				</ul>
 				<ul class="details">
 					<li>24-09-1993</li>
@@ -30,10 +30,10 @@
 					<li>test therapie, test medicatie</li>
 				</ul>
 				<ul class="detailHeaders">
-					<li>In behandeling sinds</li>
-					<li>Duur therapie</li>
-					<li>Therapeuten</li>
-					<li>Locatie Therapie</li>
+					<li>In behandeling sinds:</li>
+					<li>Duur therapie:</li>
+					<li>Therapeuten:</li>
+					<li>Locatie Therapie:</li>
 				</ul>
 				<ul class="details">
 					<li>11-09-2014</li>
@@ -41,8 +41,32 @@
 					<li>Peter van Test</li>
 					<li>Test locatie AREA 51</li>
 				</ul>
+				<nav>
+					<ul>
+						<li class="selected"><a href="#exercisesSummary">aangemaakte oefeningen</a>
+						</li><li class=""><a href="#progressExercises">voortgang oefeningen</a>
+						</li><li class=""><a href="#notifications">meldingen</a></li>
+					</ul>
+				</nav>
 			</div>
-		</section>
+
+			<section class="exercisesSummary content">
+		    	<h3 class="left">Titel</h3
+		    	><h3 class="right">Graad <i class="icon-chevron-down"></i></h3>
+		  	<div class="exercisesList">
+			    	<p class="left"><a data-bind="myLink"><i data-bind="title"></i></a></p
+			    	><p data-bind="fearFactor" class="right"></p>
+		  	</div> 
+			</section>
+
+			<section class="progressExercises">
+				
+			</section>
+
+			<section class="notifications">
+				
+			</section>
+		</main>
 		<script src="static/js/vendor/underscore-min.js"></script>
 		<script src="static/js/vendor/shotgun.min.js"></script>
 		<script src="static/js/vendor/myFunctions.js"></script>		

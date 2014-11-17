@@ -14,42 +14,42 @@
 				<li><input type="text" value="Zoeken"></li>
 			</ul>
 		</header>
-
-		<section class="home content">
-			<div id="account">
-				<img src="static/images/icons/maleIcon.svg" alt="">
-				<span>
-					<h2>Arts</h2>
-					<em>arts@test.com</em>
-				</span>
-			</div>
-
-			<div id="information">
-				<h1>Dashboard</h1>
-				<h3>Welkom bij Fidence!</h3>
-				<p>de startpagina beslaat de patienten die op dit moment geregistreerd staan voor een behandeling in het AMC</p>
-				<span>
-					<h3>Meer opties</h3>
-					<ul>
-						<li>Startpagina bewerken</li>
-						<li>Overzicht alle oefeningen</li>
-						<li>Nieuwe berichten</li>
-						<li>Contact</li>
-					</ul>
-				</span>
-				<h4>9 patienten</h4>
-
-			</div>
-
-			<div id="patienten">
-				<div id="newPatient"></div>
-				<div class="patient">
-					<h3 data-bind="myName"></h3>
-					<img src="static/images/icons/femaleIcon.png" alt="">
-					<a data-bind="myLink">Bewerken</a>
+		<main>
+			<section class="home content">
+				<div id="account">
+					<img src="static/images/icons/maleIcon.svg" alt="">
+					<span>
+						<h2>Arts</h2>
+						<em>arts@test.com</em>
+					</span>
 				</div>
-			</div>
-		</section>
+
+				<div id="information">
+					<h1>Dashboard</h1>
+					<h3>Welkom bij Fidence!</h3>
+					<p>de startpagina beslaat de patienten die op dit moment geregistreerd staan voor een behandeling in het AMC</p>
+					<span>
+						<h3>Meer opties</h3>
+						<ul>
+							<li>Startpagina bewerken</li>
+							<li>Overzicht alle oefeningen</li>
+							<li>Nieuwe berichten</li>
+							<li>Contact</li>
+						</ul>
+					</span>
+					<h4>9 patienten</h4>
+
+				</div>
+
+				<div id="patienten">
+					<div class="patient">
+						<h3 data-bind="myName"></h3>
+						<img src="static/images/icons/femaleIcon.png" alt="">
+						<a data-bind="myLink">Bewerken</a>
+					</div>
+				</div>
+			</section>
+		</main>
 		<script src="static/js/vendor/underscore-min.js"></script>
 		<script src="static/js/vendor/shotgun.min.js"></script>
 		<script src="static/js/vendor/myFunctions.js"></script>		
