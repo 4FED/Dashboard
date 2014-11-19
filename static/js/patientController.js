@@ -5,10 +5,10 @@ var ocdDashboard = ocdDashboard || {};
 
 	var sections = {
 		home: function (){
-			Transparency.render(myFunctions.getOneEl(".patient"), ocdDashboard.Patient.details, ocdDashboard.Patient.directives);
+			Transparency.render(myFunctions.getOneEl(".patient"), JSON.parse(sessionStorage.getItem("patientDetails")), ocdDashboard.Patient.directives);
 		},
 		detail: function () {
-			// body...
+			Transparency.render(myFunctions.getOneEl(".exercisesList"), JSON.parse(sessionStorage.getItem("exercises")), ocdDashboard.Patient.directives);
 		},
 		toggle: function (show, hide) {
 			var show = myFunctions.getOneEl("." + show);
@@ -25,17 +25,19 @@ var ocdDashboard = ocdDashboard || {};
 		init: function () {
 			var reroute = "http://localhost/4fed/Dashboard/#user/login"
 			routie({
+	    		exercisesSummary: function () {
+	    			SHOTGUN.listen("getExercises", sections.detail);
+	    			ocdDashboard.Patient.getExercises();	
+	    			sections.toggle("exercisesSummary", "content")
+	    		},
 	    		':id': function(id) {	
+	    			console.log(id);
 	    			if (Parse.User.current()) {
 	    				SHOTGUN.listen("getDetails", ocdDashboard.router.reroute);
 	    				ocdDashboard.Patient.getDetails(id);
 	    			}else{
 	    				window.location.replace(reroute);
 	    			};
-	    		},
-	    		exercisesSummary: function () {
-	    			SHOTGUN.listen("getExercises", sections.toggle("exerciseSummary", "content"));
-	    			ocdDashboard.Patient.getExercises();	
 	    		},
 	    		'': function(){
 	    			if (Parse.User.current()) {

@@ -25,27 +25,24 @@ var ocdDashboard = ocdDashboard || {};
 			var patienten = JSON.parse(sessionStorage.getItem("patienten"));
 			_.each(patienten, function(patient){
 				if (patient.objectId == id) {
-					ocdDashboard.Patient.details = patient;
+					var patientDetails = JSON.stringify(patient)
+					sessionStorage.setItem("patientDetails", patientDetails);
 				};
 				  	SHOTGUN.fire("getDetails");
 			});	
 		},
 		getExercises: function () {
-			ocdDashboard.Patient.exercises = [];
+			exercisesArray = [];
+			var patient = JSON.parse(sessionStorage.getItem("patientDetails"));
 			exerciseQuery = new Parse.Query("exercise");
-			exerciseQuery.equalTo("userID", ocdDashboard.Patient.details.objectId);
+			exerciseQuery.equalTo("userID", patient.objectId);
 			exerciseQuery.find({
 				success: function(exercises) {
-				  	console.log(exercises);
 				  	_.each(exercises, function(exercise){
-				  		var object = {};
-				  		object.id = exercise.id;
-				  		object.title = exercise.get("title");
-				  		object.category = exercise.get("category");
-				  		object.fearfactor = exercise.get("fearfactor");
-				  		object.responsePrevention = exercise.get("responsePrevention");
-				  		ocdDashboard.Patient.exercises.push(object);
+				  		exercisesArray.push(exercise);
 				  	});
+				  	var exercises  = JSON.stringify(exercisesArray);
+				    sessionStorage.setItem("exercises", exercises);
 				  	SHOTGUN.fire("getExercises");
 				},
 				error: function(patienten, error) {
@@ -53,10 +50,6 @@ var ocdDashboard = ocdDashboard || {};
 				}
 			});
 		},
-		details: {
-		},
-		exercises: [
-		],
 		directives: {
 		    myName:{
 		    	text: function() {
