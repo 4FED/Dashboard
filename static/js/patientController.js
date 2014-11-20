@@ -12,6 +12,9 @@ var ocdDashboard = ocdDashboard || {};
 			Transparency.render(myFunctions.getOneEl(".exercisesList"), JSON.parse(sessionStorage.getItem("exercises")), ocdDashboard.Patient.directives);
 			Transparency.render(myFunctions.getOneEl("#patientDetails"), JSON.parse(sessionStorage.getItem("patientDetails")), ocdDashboard.Patient.directives);
 		},
+		progress: function () {
+			Transparency.render(myFunctions.getOneEl(".exercisesProgressList"), JSON.parse(sessionStorage.getItem("exercises")), ocdDashboard.Patient.directives);
+		},
 		toggle: function (show, hide) {
 			var show = myFunctions.getOneEl("." + show);
 			var hide =  myFunctions.getAllEl("." + hide);
@@ -30,7 +33,15 @@ var ocdDashboard = ocdDashboard || {};
 	    		exercisesSummary: function () {
 	    			SHOTGUN.listen("getExercises", sections.detail);
 	    			ocdDashboard.Patient.getExercises();	
-	    			sections.toggle("exercisesSummary", "content")
+	    			sections.toggle("exercisesSummary", "content");
+	    		},
+	    		progressExercises: function () {
+	    			if (sessionStorage.getItem('exercises')) {
+	    				sections.toggle("progressExercises", "content");
+	    				sections.progress();
+	    			} else {
+	    				ocdDashboard.Patient.getExercises();	
+	    			}
 	    		},
 	    		':id': function(id) {	
 	    			console.log(id);

@@ -54,13 +54,28 @@
 		    	<h3 class="left">Titel</h3
 		    	><h3 class="right">Graad <i class="icon-chevron-down"></i></h3>
 		  	<div class="exercisesList">
-			    	<p class="left"><a data-bind="myLink"><i data-bind="title"></i></a></p
+			    	<p class="left"><a><i data-bind="title"></i></a></p
 			    	><p data-bind="fearFactor" class="right"></p>
 		  	</div> 
 			</section>
 
-			<section class="progressExercises">
-				
+			<section class="progressExercises content">
+				<div id="exercises">
+					<h3 class="left">Titel</h3
+		    		><h3 class="right">Graad <i class="icon-chevron-down"></i></h3>
+	  				<div class="exercisesList exercisesProgressList">
+		    			<p class="left"><a><i data-bind="title"></i></a></p
+		    			><p data-bind="fearFactor" class="right"></p>
+	  				</div> 
+				</div
+				><div id="progressExercise">
+					<h2 data-bind="title"></h2>
+					<canvas id="progressChart"></canvas>
+					<h2>Response Preventie</h2>
+					<p data-bind="responsePrevention">
+						
+					</p>
+				</div>
 			</section>
 
 			<section class="notifications">
