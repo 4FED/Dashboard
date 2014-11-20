@@ -59,6 +59,15 @@ var ocdDashboard = ocdDashboard || {};
 		    myLink:{
 		    	href: function() { return "patient.html#" + this.objectId; }
 		    },
+		    profilePicture:{
+		    	src: function() {
+		    		if (this.profilePicture) {
+		    			return this.profilePicture.url;
+		    		} else {
+		    			return "static/images/icons/femaleIcon.png";
+		    		}
+		    	}
+		    },
 		}
 	}	
 })();

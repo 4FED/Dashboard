@@ -6,9 +6,11 @@ var ocdDashboard = ocdDashboard || {};
 	var sections = {
 		home: function (){
 			Transparency.render(myFunctions.getOneEl(".patient"), JSON.parse(sessionStorage.getItem("patientDetails")), ocdDashboard.Patient.directives);
+
 		},
 		detail: function () {
 			Transparency.render(myFunctions.getOneEl(".exercisesList"), JSON.parse(sessionStorage.getItem("exercises")), ocdDashboard.Patient.directives);
+			Transparency.render(myFunctions.getOneEl("#patientDetails"), JSON.parse(sessionStorage.getItem("patientDetails")), ocdDashboard.Patient.directives);
 		},
 		toggle: function (show, hide) {
 			var show = myFunctions.getOneEl("." + show);
