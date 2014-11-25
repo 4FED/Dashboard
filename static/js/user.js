@@ -38,7 +38,7 @@ var ocdDashboard = ocdDashboard || {};
 			Parse.User.logIn(amcId, password, {
 			  success: function(user) {
 			  	console.log("succes" + user);
-				    window.location.href = "http://localhost/4fed/Dashboard/home.html";
+				    window.location.href = "http://localhost:8080/4fed/Dashboard/home.html";
 			  },
 			  error: function(user, error) {
 			    console.log('login Failed ' + error.message);
@@ -51,9 +51,16 @@ var ocdDashboard = ocdDashboard || {};
 		},
 		logout: function () {
 			Parse.User.logOut();
-			window.location.href = "http://localhost/4fed/Dashboard/#user/login";
+			window.location.href = "http://localhost:8080/4fed/Dashboard/#user/login";
 			sessionStorage.clear();
 			localStorage.clear();
-		}
+		},
+		directives: {
+		    myName:{
+		    	text: function() {
+		    		return this.initials + " " + this.surname; 
+		    	}
+		    },
+		},
 	};
 })();

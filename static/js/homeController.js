@@ -8,7 +8,11 @@ var ocdDashboard = ocdDashboard || {};
 	// sets router parameters
 	var sections = {
 		home: function (){
+			var user = Parse.User.current()
+			var userDetails = [];
+			userDetails.push(user._serverData);
 			Transparency.render(myFunctions.getOneEl("#patienten"), JSON.parse(sessionStorage.getItem("patienten")), ocdDashboard.Patient.directives);
+			Transparency.render(myFunctions.getOneEl("#account"), userDetails, ocdDashboard.User.directives);
 		},
 		toggle: function (show, hide) {
 			var show = myFunctions.getOneEl("." + show);
@@ -23,7 +27,7 @@ var ocdDashboard = ocdDashboard || {};
 
 	ocdDashboard.router = {
 		init: function () {
-			var reroute = "http://localhost/4fed/Dashboard/#user/login"
+			var reroute = "http://localhost:8080/4fed/Dashboard/#user/login"
 			routie({
 	    		home: function() {	
 	    			if (Parse.User.current()) {
@@ -36,7 +40,7 @@ var ocdDashboard = ocdDashboard || {};
 	    		},
 	    		'': function(){
 	    			if (Parse.User.current()) {
-	    				window.location.replace("http://localhost/4fed/Dashboard/home.html#home");
+	    				window.location.replace("http://localhost:8080/4fed/Dashboard/home.html#home");
 	    			}else{
 	    				window.location.replace(reroute);
 	    			};

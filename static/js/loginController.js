@@ -17,14 +17,14 @@ var ocdDashboard = ocdDashboard || {};
 
 	ocdDashboard.router = {
 		init: function () {
-			var reroute = window.location.replace("http://localhost/4fed/Dashboard/#user/login");
+			var reroute = window.location.replace("http://localhost:8080/4fed/Dashboard/#user/login");
 			routie({
 	    		'user/:type': function (type) {
 	    			console.log(type);	    			
 	    			sections.toggle("user", "content");
 	    			sections.toggle(type, "userForm");
 	    			if (type == "login" && Parse.User.current()) {	    				
-				    	window.location.href = "http://localhost/4fed/Dashboard/home.html";
+				    	window.location.href = "http://localhost:8080/4fed/Dashboard/home.html";
 	    			};
 	    		},
 	    		'': function () {

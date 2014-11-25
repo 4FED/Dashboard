@@ -28,11 +28,11 @@ var ocdDashboard = ocdDashboard || {};
 
 	ocdDashboard.router = {
 		init: function () {
-			var reroute = "http://localhost/4fed/Dashboard/#user/login"
+			var reroute = "http://localhost:8080/4fed/Dashboard/#user/login"
 			routie({
 	    		exercisesSummary: function () {
 	    			SHOTGUN.listen("getExercises", sections.detail);
-	    			ocdDashboard.Patient.getExercises();	
+	    			ocdDashboard.Exercise.get();	
 	    			sections.toggle("exercisesSummary", "content");
 	    		},
 	    		progressExercises: function () {
@@ -40,7 +40,7 @@ var ocdDashboard = ocdDashboard || {};
 	    				sections.toggle("progressExercises", "content");
 	    				sections.progress();
 	    			} else {
-	    				ocdDashboard.Patient.getExercises();	
+	    				ocdDashboard.Exercise.get();	
 	    			}
 	    		},
 	    		':id': function(id) {	
@@ -54,7 +54,7 @@ var ocdDashboard = ocdDashboard || {};
 	    		},
 	    		'': function(){
 	    			if (Parse.User.current()) {
-	    				window.location.replace("http://localhost/4fed/Dashboard/home.html#home");
+	    				window.location.replace("http://localhost:8080/4fed/Dashboard/home.html#home");
 	    			}else{
 	    				window.location.replace(reroute);
 	    			};
@@ -62,7 +62,7 @@ var ocdDashboard = ocdDashboard || {};
 			});
 		},
 		reroute: function() {
-			window.location.replace("http://localhost/4fed/Dashboard/patient.html#exercisesSummary")
+			window.location.replace("http://localhost:8080/4fed/Dashboard/patient.html#exercisesSummary")
 		} 
 	};
 	ocdDashboard.router.init();

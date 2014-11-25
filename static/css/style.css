@@ -142,3 +142,6 @@ div#patientDetails > nav > ul li.selected{
 	text-align: center;
 	border-left: 0.12em solid #969696;	
 }
+.progressExercises{
+	width: 30%;
+}
