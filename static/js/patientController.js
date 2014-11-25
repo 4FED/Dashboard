@@ -13,7 +13,10 @@ var ocdDashboard = ocdDashboard || {};
 			Transparency.render(myFunctions.getOneEl("#patientDetails"), JSON.parse(sessionStorage.getItem("patientDetails")), ocdDashboard.Patient.directives);
 		},
 		progress: function () {
-			Transparency.render(myFunctions.getOneEl(".exercisesProgressList"), JSON.parse(sessionStorage.getItem("exercises")), ocdDashboard.Patient.directives);
+			Transparency.render(myFunctions.getOneEl(".exercisesProgressList"), JSON.parse(sessionStorage.getItem("exercises")), ocdDashboard.Exercise.directives);
+		},
+		detailExercise: function () {			
+			Transparency.render(myFunctions.getOneEl("#exerciseChart"), JSON.parse(sessionStorage.getItem("exerciseDetails")))
 		},
 		toggle: function (show, hide) {
 			var show = myFunctions.getOneEl("." + show);
@@ -42,6 +45,15 @@ var ocdDashboard = ocdDashboard || {};
 	    			} else {
 	    				ocdDashboard.Exercise.get();	
 	    			}
+	    		},
+	    		'progressExercises/:id': function (id) {
+	    			if (Parse.User.current()) {
+	    				SHOTGUN.listen("getExerciseDetails", sections.detailExercise);
+	    				ocdDashboard.Exercise.getDetails(id);
+	    				ocdDashboard.Exercise.drawChart(id);
+	    			}else{
+	    				window.location.replace(reroute);
+	    			};
 	    		},
 	    		':id': function(id) {	
 	    			console.log(id);
