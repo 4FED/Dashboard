@@ -43,8 +43,8 @@
 				</ul>
 				<nav>
 					<ul>
-						<li class="selected"><a href="#exercisesSummary">aangemaakte oefeningen</a>
-						</li><li class=""><a href="#progressExercises">voortgang oefeningen</a>
+						<li class="summary selected"><a href="#exercisesSummary">aangemaakte oefeningen</a>
+						</li><li class="progress"><a href="#progressExercises">voortgang oefeningen</a>
 						</li><li class=""><a href="#notifications">meldingen</a></li>
 					</ul>
 				</nav>
@@ -69,6 +69,7 @@
 					</div>
 				</div>
 				<div id="exerciseChart">
+					<img src="static/images/loader.gif" class="loaderIcon">
 					<h2 data-bind="title"></h2>
 					<canvas id="progressChart"></canvas>
 					<h2>Response Preventie</h2>

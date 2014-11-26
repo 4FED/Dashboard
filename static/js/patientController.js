@@ -9,10 +9,14 @@ var ocdDashboard = ocdDashboard || {};
 
 		},
 		detail: function () {
+			myFunctions.getOneEl(".progress").classList.remove("selected");
+			myFunctions.getOneEl(".summary").classList.add("selected");
 			Transparency.render(myFunctions.getOneEl(".exercisesList"), JSON.parse(sessionStorage.getItem("exercises")), ocdDashboard.Patient.directives);
 			Transparency.render(myFunctions.getOneEl("#patientDetails"), JSON.parse(sessionStorage.getItem("patientDetails")), ocdDashboard.Patient.directives);
 		},
 		progress: function () {
+			myFunctions.getOneEl(".summary").classList.remove("selected");
+			myFunctions.getOneEl(".progress").classList.add("selected");
 			Transparency.render(myFunctions.getOneEl(".exercisesProgressList"), JSON.parse(sessionStorage.getItem("exercises")), ocdDashboard.Exercise.directives);
 		},
 		detailExercise: function () {			
@@ -36,14 +40,17 @@ var ocdDashboard = ocdDashboard || {};
 	    		exercisesSummary: function () {
 	    			SHOTGUN.listen("getExercises", sections.detail);
 	    			ocdDashboard.Exercise.get();	
+	    			ocdDashboard.Exercise.getFinished();
 	    			sections.toggle("exercisesSummary", "content");
 	    		},
 	    		progressExercises: function () {
-	    			if (sessionStorage.getItem('exercises')) {
+	    			if (sessionStorage.getItem('exercises') && sessionStorage.getItem('exerciseFinished')) {
 	    				sections.toggle("progressExercises", "content");
 	    				sections.progress();
 	    			} else {
+	    				SHOTGUN.listen("getExercises", sections.progress)
 	    				ocdDashboard.Exercise.get();	
+	    				ocdDashboard.Exercise.getFinished();
 	    			}
 	    		},
 	    		'progressExercises/:id': function (id) {
@@ -78,5 +85,6 @@ var ocdDashboard = ocdDashboard || {};
 		} 
 	};
 	ocdDashboard.router.init();
+	myFunctions.disableLoader();
 	myFunctions.AddClickEvent(".eventButton");	
 })();

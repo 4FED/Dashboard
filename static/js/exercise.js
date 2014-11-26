@@ -20,6 +20,24 @@ ocdDashboard = ocdDashboard || {};
 				}
 			});
 		},
+		getFinished: function () {
+			var exercisesArray = [];
+			var patient = JSON.parse(sessionStorage.getItem("patientDetails"));
+			exerciseQuery = new Parse.Query("exerciseFinished");
+			exerciseQuery.equalTo("userID", patient.objectId);
+			exerciseQuery.find({
+				success: function(exercises) {
+				  	_.each(exercises, function(exercise){
+				  		exercisesArray.push(exercise);
+				  	});
+				  	var exercises  = JSON.stringify(exercisesArray);
+				    sessionStorage.setItem("exerciseFinished", exercises);
+				},
+				error: function(error) {
+					console.log('get exercises failed ' + error.message);
+				}
+			});
+		},
 		getDetails: function (id) {
 			var exercises = JSON.parse(sessionStorage.getItem("exercises"));
 			_.each(exercises, function(exercise){
@@ -32,14 +50,15 @@ ocdDashboard = ocdDashboard || {};
 		},
 		drawChart: function (id){	
 			this.setData(id);
-			SHOTGUN.listen("setData", function () {
+			myFunctions.enableLoader();
+			// SHOTGUN.listen("setData", function () {
 			
 				var canvas  = document.getElementById("progressChart").getContext("2d");
 				var options = {
 					 scaleShowGridLines : false,
 				}
 				var data = {
-				    labels: ["1", "2", "3", "4", "5", "6", "7"], 
+				    labels: ocdDashboard.Exercise.dataLabels, 
 				    datasets: [
 					    {
 				            label: "angst score pre exposure",
@@ -64,24 +83,35 @@ ocdDashboard = ocdDashboard || {};
 		            ]
 				}
 				var progressLineChart = new Chart(canvas).Line(data, options);
-			})
+				myFunctions.disableLoader();
+			// })
 		},
 		setData: function (id) {		
-			var Exercise = Parse.Object.extend("exerciseFinished");
-			var exerciseQuery = new Parse.Query(Exercise);
-			exerciseQuery.equalTo("exerciseId", id);			
-			exerciseQuery.find({
-				success: function(exercises) {		
-					for (var i = 0; exercises.length > i; i++) {
-						ocdDashboard.Exercise.dataSetPre[i] = exercises[i].get("fearFactorPre");
-						ocdDashboard.Exercise.dataSetPost[i] = exercises[i].get("fearFactorPost");
+			ocdDashboard.Exercise.dataLabels = [];
+			ocdDashboard.Exercise.dataSetPre = [];
+			ocdDashboard.Exercise.dataSetPost = [];
+			var i = 1;
+			var exercises = JSON.parse(sessionStorage.getItem("exerciseFinished"));
+			// var Exercise = Parse.Object.extend("exerciseFinished");
+			// var exerciseQuery = new Parse.Query(Exercise);
+			// exerciseQuery.equalTo("exerciseId", id);			
+			// exerciseQuery.find({
+			// 	success: function(exercises) {		
+				_.each(exercises, function(exercise){
+					if (exercise.exerciseId == id) {
+						ocdDashboard.Exercise.dataLabels.push(i);
+						ocdDashboard.Exercise.dataSetPre.push(exercise.fearFactorPre);
+						ocdDashboard.Exercise.dataSetPost.push(exercise.fearFactorPost);
+						i++;
 					};
-					SHOTGUN.fire("setData");
-			  	},
-			  	error: function(exercises, error) {
-			    	console.log('get exercises failed ' + error.message);
-			  	}
-			});
+					// SHOTGUN.fire("setData");	
+				});	
+					
+			//   	},
+			//   	error: function(exercises, error) {
+			//     	console.log('get exercises failed ' + error.message);
+			//   	}
+			// });
 		},
 		directives: {
 		    myLink:{
@@ -90,7 +120,9 @@ ocdDashboard = ocdDashboard || {};
 		},		
 		dataSetPre: [
 		],
-		dataSetPost:[
+		dataSetPost: [
+		],
+		dataLabels: [
 		]
 	}
 })();
