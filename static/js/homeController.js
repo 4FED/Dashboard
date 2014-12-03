@@ -46,8 +46,28 @@ var ocdDashboard = ocdDashboard || {};
 	    			};
 	    		}
 			});
-		} 
+		}		
 	};
+	ocdDashboard.utils = {
+		liveSearch: function () {
+			var searchField = myFunctions.getOneEl("#liveSearchPatienten");			
+			var patienten = JSON.parse(sessionStorage.getItem("patienten"));
+
+			searchField.addEventListener('input', function(){
+
+				var input = searchField.value;
+				var re = new RegExp('^'+input, 'i'); // regular expression that selects if string starts with input, and not case sensitive
+
+				_.each(patienten, function (patient) {
+					patientName = patient.firstname;
+					if (patientName.search(re) != -1) {
+						console.log(patient);
+					};
+				});		
+			}, true);
+		}
+	}
 	ocdDashboard.router.init();
 	myFunctions.AddClickEvent(".eventButton");	
+	ocdDashboard.utils.liveSearch();
 })();

@@ -21,10 +21,12 @@ form.userForm label{
 #account{
 	width: 30%;
 	height: 40%;
-	display: inline-block;
+	display: block;
 	border-radius: 10px;
 	background-color: #969696;
 	vertical-align: top;
+	margin-left: auto;
+	margin-right: auto;
 }
 #account > img{
 	width: 20%;
@@ -34,7 +36,19 @@ form.userForm label{
 	background-color: #fff;
 	display: block;
 }
-#information{
+.home > h2{
+	display: block;
+	width: 100%;
+	height: 2em;
+	line-height: 2em;
+	margin-top: 0.5em;
+	margin-bottom: 0.5em; 
+	text-align: center;
+	background-color: #969696;
+	color: white;
+	font-size: 12pt;
+}
+/*#information{
 	vertical-align: top;
 	width: 65%;
 	height: 40%;
@@ -51,7 +65,7 @@ form.userForm label{
 	display: inline-block;
 	width: 25%;
 	float: right;
-}
+}*/
 #patienten{
 	width: 100%;
 }

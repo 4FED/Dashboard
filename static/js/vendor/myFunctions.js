@@ -56,6 +56,23 @@ var myFunctions = {
 		_.each(loaderIcons, function (loaderIcon) {
 			loaderIcon.style.display = "block";
 		})	
-	}	
+	},
+	liveSearch: function (input, data, key) {
+			var inputField = myFunctions.getOneEl(input);			
+			var dataObjects = data;
+
+			inputField.addEventListener('input', function(){
+
+				var inputValue = inputField.value;
+				var re = new RegExp('^'+inputValue, 'i'); // regular expression that selects if string starts with input, and not case sensitive
+
+				_.each(dataObjects, function (object) {
+					var el = object[key];
+					if (el.search(re) != -1) {
+						return object;
+					};
+				});		
+			}, true);
+		}	
 
 };	
