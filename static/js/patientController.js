@@ -3,22 +3,50 @@ var ocdDashboard = ocdDashboard || {};
 (function () {
 	Parse.initialize("e2pCNYD20d5ynvUPKyUud5G20evDRI4pmHiqrvPw", "6IEcqXamMkjJsssIaFPiTDKH1azNB6wOtR5kuAIP");
 
-	var sections = {
+	ocdDashboard.sections = {
 		home: function (){
 			Transparency.render(myFunctions.getOneEl(".patient"), JSON.parse(sessionStorage.getItem("patientDetails")), ocdDashboard.Patient.directives);
 
 		},
-		detail: function () {
-			myFunctions.getOneEl(".progress").classList.remove("selected");
-			myFunctions.getOneEl(".summary").classList.add("selected");
-			Transparency.render(myFunctions.getOneEl(".exercisesList"), JSON.parse(sessionStorage.getItem("exercises")), ocdDashboard.Patient.directives);
+		detail: function (weekNumber, old) {
+			var exercisesData = JSON.parse(sessionStorage.getItem("exercises"));
+			var weekNumber = document.getElementById("select_week").value;
+			
+			if (weekNumber == "next_week") {
+				weekNumber = myFunctions.getCurrentWeek()+1;
+			} else {
+				weekNumber = myFunctions.getCurrentWeek();
+			};
+
+			var weekdata = {
+				content: {
+					date: "De week van " + myFunctions.WeekToDate(weekNumber).getDate() + " " + myFunctions.getMonthName(myFunctions.WeekToDate(weekNumber).getMonth()),
+				},
+				directives: {
+					// action: {
+					// 	onchange: function () { return ""}
+					// }
+				}
+			};
+
+			Transparency.render(document.getElementById("patient_profile"), weekdata.content, weekdata.directives);
+
+			var exercisesSummary = exercisesData[weekNumber];
+
+
+			Transparency.render(myFunctions.getOneEl(".exercisesList"), exercisesSummary, ocdDashboard.Exercise.directives);
 			Transparency.render(myFunctions.getOneEl("#patientDetails"), JSON.parse(sessionStorage.getItem("patientDetails")), ocdDashboard.Patient.directives);
+			Transparency.render(myFunctions.getOneEl("#patient_profile"), JSON.parse(sessionStorage.getItem("patientDetails")));
+			var experiences = myFunctions.getAllEl(".experienceText");	
+			_.each(experiences, function (experience) {
+				experience.innerHTML = experience.value;
+			})
+			ocdDashboard.Progress.init(exercisesSummary);
 		},
-		progress: function () {
-			myFunctions.getOneEl(".summary").classList.remove("selected");
-			myFunctions.getOneEl(".progress").classList.add("selected");
-			Transparency.render(myFunctions.getOneEl(".exercisesProgressList"), JSON.parse(sessionStorage.getItem("exercises")), ocdDashboard.Exercise.directives);
-		},
+		// progress: function () {
+		// 	Transparency.render(myFunctions.getOneEl(".exercisesProgressList"), JSON.parse(sessionStorage.getItem("exercises")), ocdDashboard.Exercise.directives);
+		// 	ocdDashboard.progress.init();
+		// },
 		detailExercise: function () {			
 			Transparency.render(myFunctions.getOneEl("#exerciseChart"), JSON.parse(sessionStorage.getItem("exerciseDetails")))
 		},
@@ -35,33 +63,33 @@ var ocdDashboard = ocdDashboard || {};
 
 	ocdDashboard.router = {
 		init: function () {
-			var reroute = "http://localhost:8080/4fed/Dashboard/#user/login"
+			var reroute = "http://fenix-app.nl/dashboard/#user/login"
 			routie({
 	    		exercisesSummary: function () {
-	    			SHOTGUN.listen("getExercises", sections.detail);
+	    			SHOTGUN.listen("getExercises", ocdDashboard.sections.detail);
 	    			ocdDashboard.Exercise.get();	
 	    			ocdDashboard.Exercise.getFinished();
-	    			sections.toggle("exercisesSummary", "content");
+	    			ocdDashboard.sections.toggle("exercisesSummary", "content");
 	    		},
-	    		progressExercises: function () {
-	    			if (sessionStorage.getItem('exercises') && sessionStorage.getItem('exerciseFinished')) {
-	    				sections.toggle("progressExercises", "content");
-	    				sections.progress();
-	    			} else {
-	    				SHOTGUN.listen("getExercises", sections.progress)
-	    				ocdDashboard.Exercise.get();	
-	    				ocdDashboard.Exercise.getFinished();
-	    			}
-	    		},
-	    		'progressExercises/:id': function (id) {
-	    			if (Parse.User.current()) {
-	    				SHOTGUN.listen("getExerciseDetails", sections.detailExercise);
-	    				ocdDashboard.Exercise.getDetails(id);
-	    				ocdDashboard.Exercise.drawChart(id);
-	    			}else{
-	    				window.location.replace(reroute);
-	    			};
-	    		},
+	    		// progressExercises: function () {
+	    		// 	if (sessionStorage.getItem('exercises') && sessionStorage.getItem('exerciseFinished')) {
+	    		// 		ocdDashboard.sections.toggle("progressExercises", "content");
+	    		// 		ocdDashboard.sections.progress();
+	    		// 	} else {
+	    		// 		SHOTGUN.listen("getExercises", ocdDashboard.sections.progress)
+	    		// 		ocdDashboard.Exercise.get();	
+	    		// 		ocdDashboard.Exercise.getFinished();
+	    		// 	}
+	    		// },
+	    		// 'progressExercises/:id': function (id) {
+	    		// 	if (Parse.User.current()) {
+	    		// 		SHOTGUN.listen("getExerciseDetails", ocdDashboard.sections.detailExercise);
+	    		// 		ocdDashboard.Exercise.getDetails(id);
+	    		// 		ocdDashboard.Exercise.drawChart(id);
+	    		// 	}else{
+	    		// 		window.location.replace(reroute);
+	    		// 	};
+	    		// },
 	    		':id': function(id) {	
 	    			console.log(id);
 	    			if (Parse.User.current()) {
@@ -73,7 +101,7 @@ var ocdDashboard = ocdDashboard || {};
 	    		},
 	    		'': function(){
 	    			if (Parse.User.current()) {
-	    				window.location.replace("http://localhost:8080/4fed/Dashboard/home.html#home");
+	    				window.location.replace("http://fenix-app.nl/dashboard/home.html#home");
 	    			}else{
 	    				window.location.replace(reroute);
 	    			};
@@ -81,7 +109,7 @@ var ocdDashboard = ocdDashboard || {};
 			});
 		},
 		reroute: function() {
-			window.location.replace("http://localhost:8080/4fed/Dashboard/patient.html#exercisesSummary")
+			window.location.replace("http://fenix-app.nl/dashboard/patient.html#exercisesSummary")
 		} 
 	};
 	ocdDashboard.router.init();

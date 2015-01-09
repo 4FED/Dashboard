@@ -8,9 +8,14 @@ var ocdDashboard = ocdDashboard || {};
 	// sets router parameters
 	var sections = {
 		home: function (){
-			var user = Parse.User.current()
+			var userData = Parse.User.current()
 			var userDetails = [];
-			userDetails.push(user._serverData);
+			var user = {};
+			user.initials = userData.get("initials");
+			user.surname = userData.get("surname")
+			user.profilePicture = userData.get('profilePicture');
+			userDetails.push(user);
+			console.log(user)
 			Transparency.render(myFunctions.getOneEl("#patienten"), JSON.parse(sessionStorage.getItem("patienten")), ocdDashboard.Patient.directives);
 			Transparency.render(myFunctions.getOneEl("#account"), userDetails, ocdDashboard.User.directives);
 		},
@@ -27,7 +32,7 @@ var ocdDashboard = ocdDashboard || {};
 
 	ocdDashboard.router = {
 		init: function () {
-			var reroute = "http://localhost:8080/4fed/Dashboard/#user/login"
+			var reroute = "http://fenix-app.nl/dashboard/#user/login"
 			routie({
 	    		home: function() {	
 	    			if (Parse.User.current()) {
@@ -40,7 +45,7 @@ var ocdDashboard = ocdDashboard || {};
 	    		},
 	    		'': function(){
 	    			if (Parse.User.current()) {
-	    				window.location.replace("http://localhost:8080/4fed/Dashboard/home.html#home");
+	    				window.location.replace("http://fenix-app.nl/dashboard/home.html#home");
 	    			}else{
 	    				window.location.replace(reroute);
 	    			};

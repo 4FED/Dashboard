@@ -1,0 +1,163 @@
+<!doctype html>
+<html>
+<head>
+	<title>Dashboard prototype V2</title>
+
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="style.css" text="text/css">
+	<!--<script src="script.js"></script>-->
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+</head>
+<body>
+	<div id="main">
+		<!-- PROFILE SETTINGS -->
+		<div id="profile_settings">
+			<section>
+				<span id="close"></span>
+				<h1>Profiel bewerken</h1>
+				<fieldset>
+					Voornaam
+					<input type="text" name="first_name">
+					Achternaam
+					<input type="text" name="last_name">				
+				</fieldset>
+				<fieldset>				
+					E-mailadres
+					<input type="email" name="email">				
+				</fieldset>
+				<fieldset>					
+					<button>Reset wachtwoord</button><p id="password_reset_msg">Een e-mail is naar u verstuurd waarin het wachtwoord gereset kan worden.</p>	
+				</fieldset>
+				<fieldset>
+					Foto
+					<img src="images/img_profile.jpg" class="profile_pic"><button>Wijzigen</button><button>Verwijderen</button>
+				</fieldset>
+				<div>					
+					<button>Wijzigingen opslaan</button>
+					<button>Annuleren</button>
+				</div>
+			</section>
+		</div>
+		<!-- ADDING NEW PATIENT -->
+			<div id="new_patient">
+			<section>
+				<span id="close"></span>
+				<h1>Nieuwe patiënt toevoegen</h1>
+				<fieldset>
+					<input type="search" name="search_person" placeholder="Zoek op naam of e-mailadres">
+					<button>Zoeken</button>		
+				</fieldset>
+				<fieldset class="person_found">				
+					<input type="email" name="found_email"><button>Verstuur uitnodiging</button>				
+				</fieldset>
+			</section>
+		</div>
+		<!--MAIN-->
+		<header>
+			<nav>
+				<img src = "images/logo_01.svg" id="logo_01">	
+				
+				<button id="logout_btn"></button>
+				<button>Profiel bewerken</button>
+				<button id="home_btn"></button>
+			</nav>
+			<ul id="notifications">
+				<li>[Naam gebruiker] <p class="notification_type">heeft je verzoek geaccepteerd</p></li>
+				<li>[Naam gebruiker] <p class="notification_type">heeft je verzoek geaccepteerd</p></li>
+				<li>[Naam gebruiker] <p class="notification_type">heeft je verzoek geaccepteerd</p></li>
+				<li>[Naam gebruiker] <p class="notification_type">heeft je verzoek geaccepteerd</p></li>
+				<li>[Naam gebruiker] <p class="notification_type">heeft je verzoek geaccepteerd</p></li>
+			</ul>
+			<section id="profile">				
+				<img src="images/img_profile.jpg" class="profile_pic">
+				<h1>Willy</h1>
+				<h2>Behandelaar</h2>
+			</section>
+			<div id="patient_nav">
+				<input type="search" placeholder="ZOEK PATIËNT">	
+				<ul id="patient_total">
+					<li><h2>[0]</h2> <a>patiënten</a></li>
+					<li><h2>[0]</h2> <a>actief in behandeling</a></li>
+					<li><h2>[0]</h2> <a>uit behandeling</a></li>
+				</ul>
+			</div>
+
+		</header>
+		<section id="home">
+			<ul>
+				<li><div>Nieuwe patiënt toevoegen</div></li>
+				<!--PATIENT-->
+				<li>
+					<span class="patient_name">[Naam patiënt]</span>
+					<div class="motivation_msg"><span class="motivation_title">Schrijf motivatiebericht</span><button class="confirm_msg_btn">OK</button><p>Je kan het Jan! Het is maar een keelontsteking! Gewoon opstaan en doorgaan! Er wordt niet gejankt!</p></div>
+					<img src="images/img_patient_01.jpg" class="patient_pic">
+					
+					<div class="patient_activity">Laatst actief:
+
+						<br/><span class="last_activity">00-00-00</span>
+					</div><button class="motivation_btn"></button>
+				</li>
+				<!--PATIENT-->
+				<li>
+					<span class="patient_name">[Naam patiënt]</span>
+					<div class="motivation_msg"><span class="motivation_title">Schrijf motivatiebericht</span><button class="confirm_msg_btn">OK</button><p>Je kan het Jan! Het is maar een keelontsteking! Gewoon opstaan en doorgaan! Er wordt niet gejankt!</p></div>
+					<img src="images/img_patient_01.jpg" class="patient_pic">
+					
+					<div class="patient_activity">Laatst actief:
+
+						<br/><span class="last_activity">00-00-00</span>
+					</div><button class="motivation_btn"></button>
+				</li>
+				<!--PATIENT-->
+				<li>
+					<span class="patient_name">[Naam patiënt]</span>
+					<div class="motivation_msg"><span class="motivation_title">Schrijf motivatiebericht</span><button class="confirm_msg_btn">OK</button><p>Je kan het Jan! Het is maar een keelontsteking! Gewoon opstaan en doorgaan! Er wordt niet gejankt!</p></div>
+					<img src="images/img_patient_01.jpg" class="patient_pic">
+					
+					<div class="patient_activity">Laatst actief:
+
+						<br/><span class="last_activity">00-00-00</span>
+					</div><button class="motivation_btn"></button>
+				</li>
+				<!--PATIENT-->
+				<li>
+					<span class="patient_name">[Naam patiënt]</span>
+					<div class="motivation_msg"><span class="motivation_title">Schrijf motivatiebericht</span><button class="confirm_msg_btn">OK</button><p>Je kan het Jan! Het is maar een keelontsteking! Gewoon opstaan en doorgaan! Er wordt niet gejankt!</p></div>
+					<img src="images/img_patient_01.jpg" class="patient_pic">
+					
+					<div class="patient_activity">Laatst actief:
+
+						<br/><span class="last_activity">00-00-00</span>
+					</div><button class="motivation_btn"></button>
+				</li>
+				<!--PATIENT-->
+				<li>
+					<span class="patient_name">[Naam patiënt]</span>
+					<div class="motivation_msg"><span class="motivation_title">Schrijf motivatiebericht</span><button class="confirm_msg_btn">OK</button><p>Je kan het Jan! Het is maar een keelontsteking! Gewoon opstaan en doorgaan! Er wordt niet gejankt!</p></div>
+					<img src="images/img_patient_01.jpg" class="patient_pic">
+					
+					<div class="patient_activity">Laatst actief:
+
+						<br/><span class="last_activity">00-00-00</span>
+					</div><button class="motivation_btn"></button>
+				</li>
+				<!--PATIENT-->
+				<li>
+					<span class="patient_name">[Naam patiënt]</span>
+					<div class="motivation_msg"><span class="motivation_title">Schrijf motivatiebericht</span><button class="confirm_msg_btn">OK</button><p>Je kan het Jan! Het is maar een keelontsteking! Gewoon opstaan en doorgaan! Er wordt niet gejankt!</p></div>
+					<img src="images/img_patient_01.jpg" class="patient_pic">
+					
+					<div class="patient_activity">Laatst actief:
+
+						<br/><span class="last_activity">00-00-00</span>
+					</div><button class="motivation_btn"></button>
+				</li>
+			</ul>
+		</section>
+		<footer>
+			<hr>
+			<a>Over deze applicatie</a> | © Fourfed, 2014
+		</footer>
+	</div>
+</body>
+</html>

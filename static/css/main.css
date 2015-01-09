@@ -1,46 +1,8 @@
-section, .userForm, .doctorEl{
+section, .userForm, .doctorEl, .exposure_detail{
 	display: none;
 }
-section.active, form.active{
+section.active, form.active, div.active{
 	display: block;
-}
-main{
-	width: 95%;
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 1.5em;	
-}
-body{
-	margin: 0;
-	padding: 0;
-	background-color: #f1f1f1;
-}
-ul, li{	
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-}
-header{
-	background-color: #fff;
-}
-header, header > ul{
-	width: 100%;
-	height: 3em;
-	margin: 0;
-	padding: 0;
-	line-height: 3em;
-}
-header > img{
-	height: 2.5em;
-	position: absolute;
-	left: 0;
-	right: 0;
-	margin-left: auto;
-	margin-right: auto;	 
-}
-header > ul li{
-	display: inline-block;
-	margin-right: 5%;
 }
 .loaderIcon{
 	position: absolute;
@@ -50,4 +12,11 @@ header > ul li{
 	right: 0;
 	margin-left: auto;
 	margin-right: auto;
+}
+a{
+	color:inherit;
+	text-decoration: none;
+}
+i{
+	font-style: normal;
 }

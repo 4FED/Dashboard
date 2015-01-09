@@ -3,95 +3,86 @@
 		<title>Dashboard</title>
 		<link rel="stylesheet" href="static/css/main.css">
 		<link rel="stylesheet" href="static/css/style.css">
-		<link href="https://fontastic.s3.amazonaws.com/9PU7jTBDVcLA5EWPJuNzJC/icons.css" rel="stylesheet">
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
 	</head>
 	<body>
-		<header>
-			<img src="static/images/icons/fidenceLogo.png" alt="">
-			<ul>
-				<li><a href="home.html">Startpagina</a></li>
-				<li><a href="#">Profiel</a></li>
-				<li><a href="#">Instelligen</a></li>
-				<li><button class="eventButton" id="logoutButton"><i class=icon-sign-out></i></button></li>
-				<li><input type="text" value="Zoeken"></li>
-			</ul>
-		</header>
-		<main>
-			<div id="patientDetails">
-				<img data-bind="profilePicture" src="" alt="profilePicture">
-				<ul class="detailHeaders">
-					<li>Geboortedatum:</li>
-					<li>ID-Nummer:</li>
-					<li>In behandeling voor:</li>
-					<li>Soort therapie:</li>
-				</ul>
-				<ul class="details">
-					<li>24-09-1993</li>
-					<li>0123456789</li>
-					<li>testvrees, testdwang</li>
-					<li>test therapie, test medicatie</li>
-				</ul>
-				<ul class="detailHeaders">
-					<li>In behandeling sinds:</li>
-					<li>Duur therapie:</li>
-					<li>Therapeuten:</li>
-					<li>Locatie Therapie:</li>
-				</ul>
-				<ul class="details">
-					<li>11-09-2014</li>
-					<li>17 weken</li>
-					<li>Peter van Test</li>
-					<li>Test locatie AREA 51</li>
-				</ul>
-				<nav>
-					<ul>
-						<li class="summary selected"><a href="#exercisesSummary">aangemaakte oefeningen</a>
-						</li><li class="progress"><a href="#progressExercises">voortgang oefeningen</a>
-						</li><li class=""><a href="#notifications">meldingen</a></li>
-					</ul>
-				</nav>
-			</div>
-
-			<section class="exercisesSummary content">
-		    	<h3 class="left">Titel</h3
-		    	><h3 class="right">Graad <i class="icon-chevron-down"></i></h3>
-		  	<div class="exercisesList">
-			    	<p class="left"><a><i data-bind="title"></i></a></p
-			    	><p data-bind="fearFactor" class="right"></p>
-		  	</div> 
-			</section>
-
-			<section class="progressExercises content">
-				<div id="exercises">
-					<h3 class="left">Titel</h3
-		    		><h3 class="right">Graad <i class="icon-chevron-down"></i></h3>
-	  				<div class="exercisesList exercisesProgressList">
-		    			<p class="left"><a href="" data-bind="myLink"><i data-bind="title"></i></a></p
-		    			><p data-bind="fearFactor" class="right"></p>
+		<div id="main">
+			<div id="new_motivation">
+				<section class="active">
+					<span id="close"></span>
+					<h1>Motivatiebericht</h1>
+					<fieldset>
+						<textarea id="motivationText" name="motivation_msg" maxlength="340" rows="4" placeholder="Schrijf een motiverend bericht aan Maaike om haar dat extra steuntje in de rug te geven. *max. 340 karakters"></textarea>
+					</fieldset>
+					<div>					
+						<button onclick="ocdDashboard.Patient.setMotivation('motivationText');">Toevoegen</button>
+						<button onclick="document.getElementById('new_motivation').style.display = 'none';">Annuleren</button>
 					</div>
-				</div>
-				<div id="exerciseChart">
-					<img src="static/images/loader.gif" class="loaderIcon">
-					<h2 data-bind="title"></h2>
-					<canvas id="progressChart"></canvas>
-					<h2>Response Preventie</h2>
-					<p data-bind="responsePrevention">
-						
-					</p>
-				</div>
-			</section>
+				</section>
+			</div>
+			<header>
+				<nav>
+					<img src="static/images/logo_01.svg" alt="" id="logo_01">
 
+					<button class="eventButton" id="logout_btn"></button>
+					<button>Profiel bewerken</button>
+					<a href="home.html"><button id="home_btn"></button></a>
+				</nav>
+				<section id="profile_status" class="active">
+					<div id="patientDetails">
+						<img data-bind="profilePicture" src ="" id="profile_pic">
+						<h1 data-bind="myName">[Gebruiker naam]</h1>
+						<fieldset>
+							<button>Actief</button><button>Inactief</button>
+						</fieldset>
+					</div>
+				</section>
+			</header>
+		<section id="patient_profile" class="exercisesSummary content">
+			<select id="select_week" data-bind="action" onchange="ocdDashboard.sections.detail();">
+				<option value="this_week">Deze week</option>
+				<option value="next_week">Volgende week</option>
+			</select>				
+				
+			<button onclick="document.getElementById('new_motivation').style.display = 'block';" id="motivation_msg_btn">Schrijf een motivatiebericht voor <i data-bind="firstname"></i></button>
+
+			<ul>
+				<li>Exposure oefeningen</li>
+				<li><p>Naam oefening</p><p>Laatst uitgevoerd</p><p>Angstniveau</p></li>
+				<div class="exercisesList">
+					<li class="dummy" data-bind="myExpand" ><i data-bind="title"></i>
+						<p data-bind="myUpdate" class="exposure_last_date"></p><p data-bind="fearFactor" class="exposure_fear_status"></p>
+						<div data-bind="myExpandId" class="exposure_detail">
+							<div class="exposure_info">
+								<span class="pre_fear_level"><h1 data-bind="fearFactorPre"></h1> Angstniveau voor oefening</span>
+								<span class="post_fear_level"><h1 data-bind="fearFactorPost"></h1> Angstniveau na oefening</span>
+								<span class="respons_preventie"><h3 >Responspreventie</h3>
+									<p data-bind="responsePrevention"></p>
+								</span>
+								<span class="experience">
+									<h3>Ervaring</h3>
+									<p class="experienceText" data-bind="ervaring"></p>
+								</span>
+							</div>
+							<span class="exposure_process"><canvas data-bind="myId" width="500px" height="200px"></canvas></span>
+						</div>
+					</li>
+				</div>
+			</ul>
+		</section>
+	
 			<section class="notifications">
 				
 			</section>
-		</main>
+	</div>
 		<script src="static/js/vendor/underscore-min.js"></script>
+		<script src="static/js/vendor/chart-min.js"></script>
 		<script src="static/js/vendor/shotgun.min.js"></script>
 		<script src="static/js/vendor/myFunctions.js"></script>		
         <script src="static/js/vendor/routie.min.js"></script>
         <script src="static/js/vendor/transparancy.min.js"></script>
 		<script src="static/js/vendor/parse-1.3.1.min.js"></script>
-		<script src="static/js/vendor/chart-min.js"></script>
+		<script src="static/js/progress.js"></script>
 		<script src="static/js/user.js"></script>
         <script src="static/js/patient.js"></script>
         <script src="static/js/exercise.js"></script>

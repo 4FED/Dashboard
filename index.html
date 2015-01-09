@@ -5,33 +5,44 @@
 		<link rel="stylesheet" href="static/css/style.css">
 	</head>
 	<body>
-		<section class="user content">
-			<form name="loginForm" class="login userForm">
-				<label for="amcId">amcId</label>
-				<input type="text" name="amcId" required>
-				<label for="password">Wachtwoord</label>
-				<input type="password" name="password" requierd>
-				<input type="button" value="Log in" id="loginButton" class="button eventButton">
-				<a href="#user/register">klik hier om te registreren</a>
-			</form>
-
-			<form name="registerForm" class="register userForm">
-				<label for="initials">Initials</label>
-				<input type="text" name="initials" requierd>
-				<label for="firstname">name</label>
-				<input type="text" name="firstname" requierd>
-				<label for="surname">surname</label>
-				<input type="text" name="surname" requierd>
-				<label for="amcId">AMC id</label>
-				<input type="text" name="amcId" required>
-				<label for="email">Email</label>
-				<input type="text" name="email" required>
-				<label for="password">Wachtwoord</label>
-				<input type="password" name="password" requierd>
-				<input type="button" value="Registreer" id="registreerButton" class="button eventButton">
-				<a href="#users/login">Cancel</a>
-			</form>
-		</section>
+		<div id="main">
+			<section id="login" class="user content">
+				<img src="static/images/logo_01.svg" id="logo_01">
+				<fieldset>
+					<form name="loginForm" class="login userForm">
+						AMC ID
+						<input type="text" name="amcId" required>
+						Wachtwoord
+						<input type="password" name="password" requierd>		
+						<input type="button" value="Log in" id="loginButton" class="button eventButton">
+					</form>				
+				</fieldset>
+				<a href="#user/register">Registreren</a> | <a>Wachtwoord vergeten</a>
+			</section>
+		
+			<section id="registreer" class="register content">
+				<img src="static/images/logo_01.svg" id="logo_01">
+				<fieldset>
+					<form name="registerForm" class="registerForm userForm">
+						Voornaam
+						<input type="text" name="firstname" requierd>
+						Achternaam
+						<input type="text" name="surname" requierd>
+						AMC id
+						<input type="text" name="amcId" required>
+						Emailadres
+						<input type="text" name="email" required>
+						Wachtwoord
+						<input type="password" name="password" requierd>	
+						Wachtwoord bevestigen
+						<input type="password" name="passwordChecker" requierd>		
+						
+						<input type="button" value="Registreer" id="registreerButton" class="button eventButton">
+					</form>				
+				</fieldset>
+				<a href="#user/login">Inloggen</a>		
+			</section>
+		</div>
 		<script src="static/js/vendor/routie.min.js"></script>
 		<script src="static/js/vendor/myFunctions.js"></script>
 		<script src="static/js/vendor/parse-1.3.1.min.js"></script>

@@ -8,12 +8,36 @@ ocdDashboard = ocdDashboard || {};
 			exerciseQuery.equalTo("userID", patient.objectId);
 			exerciseQuery.find({
 				success: function(exercises) {
-				  	_.each(exercises, function(exercise){
-				  		exercisesArray.push(exercise);
-				  	});
-				  	var exercises  = JSON.stringify(exercisesArray);
-				    sessionStorage.setItem("exercises", exercises);
-				  	SHOTGUN.fire("getExercises");
+					exercises = _.sortBy(exercises, function(sorted){
+				  			return -sorted.get("weekNumber");
+					});
+					if (exercises.length < 1) {
+					  		myFunctions.disableLoader();
+					  		var content  = JSON.stringify(exercisesArray);
+						    sessionStorage.setItem("exercises", content);
+						  	SHOTGUN.fire('getExercises');
+					  	} else {
+						  	var weekNumber = exercises[0].get("weekNumber"); // save first weeknumber
+						  	var weekArray = [];
+						  	for (var i = 0; exercises.length >= i; i++) {
+						  		if (exercises[i]) {
+							  		if(weekNumber == exercises[i].get("weekNumber")){
+							  			weekArray.push(exercises[i]);
+							  		} else {
+							  			exercisesArray[weekNumber] = weekArray;
+							  			weekArray = [];
+							  			weekNumber = exercises[i].get("weekNumber");
+							  			weekArray.push(exercises[i]);
+							  		}
+						  		} else {
+						  			exercisesArray[weekNumber] = weekArray;
+						  		}
+						  	};
+
+						    var exercises  = JSON.stringify(exercisesArray);
+						    sessionStorage.setItem("exercises", exercises);
+						  	SHOTGUN.fire("getExercises");
+					  	};				  	
 				},
 				error: function(error) {
 					console.log('get exercises failed ' + error.message);
@@ -53,7 +77,7 @@ ocdDashboard = ocdDashboard || {};
 			myFunctions.enableLoader();
 			// SHOTGUN.listen("setData", function () {
 			
-				var canvas  = document.getElementById("progressChart").getContext("2d");
+				var canvas  = document.getElementById("G" + id).getContext("2d");
 				var options = {
 					 scaleShowGridLines : false,
 				}
@@ -114,9 +138,29 @@ ocdDashboard = ocdDashboard || {};
 			// });
 		},
 		directives: {
+			myId:{
+				id: function () { return "G" + this.objectId; }
+			},
+			myEId:{
+				id: function () { return "E" + this.objectId;}	
+			},
 		    myLink:{
 		    	href: function() { return "patient.html#progressExercises/" + this.objectId; }
 		    },
+		    myUpdate:{
+		    	text: function() {return myFunctions.normalTime(this.updatedAt);}
+		    },
+		    ervaring:{
+		    	value: function () {
+		    		return this.lastExperience; 
+		    	}
+		    },
+			myExpandId:{
+				id: function () { return "ex" + this.objectId; }
+			},
+			myExpand:{
+				onclick: function () { return "myFunctions.expand('ex" + this.objectId + "');"; }
+			},
 		},		
 		dataSetPre: [
 		],

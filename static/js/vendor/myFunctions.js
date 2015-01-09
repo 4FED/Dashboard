@@ -18,7 +18,7 @@ var myFunctions = {
 			case "registreerButton":
 				ocdDashboard.User.signUp();
 				break;
-			case "logoutButton":
+			case "logout_btn":
 				ocdDashboard.User.logout();
 				break;
 		}
@@ -58,21 +58,51 @@ var myFunctions = {
 		})	
 	},
 	liveSearch: function (input, data, key) {
-			var inputField = myFunctions.getOneEl(input);			
-			var dataObjects = data;
+		var inputField = myFunctions.getOneEl(input);			
+		var dataObjects = data;
 
-			inputField.addEventListener('input', function(){
+		inputField.addEventListener('input', function(){
 
-				var inputValue = inputField.value;
-				var re = new RegExp('^'+inputValue, 'i'); // regular expression that selects if string starts with input, and not case sensitive
+			var inputValue = inputField.value;
+			var re = new RegExp('^'+inputValue, 'i'); // regular expression that selects if string starts with input, and not case sensitive
 
-				_.each(dataObjects, function (object) {
-					var el = object[key];
-					if (el.search(re) != -1) {
-						return object;
-					};
-				});		
-			}, true);
-		}	
+			_.each(dataObjects, function (object) {
+				var el = object[key];
+				if (el.search(re) != -1) {
+					return object;
+				};
+			});		
+		}, true);
+	},
+	getMonthName: function (month) {
+		var monthNames = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+    	"Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
+    	return monthNames[month];
+	},
+	WeekToDate: function (w) {
+		var simple = new Date((new Date).getFullYear(), 0, 1 + (w - 1) * 7);
+	    var dow = simple.getDay();
+	    var ISOweekStart = simple;
+	    if (dow <= 4)
+	        ISOweekStart.setDate(simple.getDate() - simple.getDay() + 1);
+	    else
+	        ISOweekStart.setDate(simple.getDate() + 8 - simple.getDay());
+	    return ISOweekStart;
+	},
+	getCurrentWeek: function() {
+        var onejan = new Date((new Date).getFullYear(), 0, 1);
+        return Math.ceil((((new Date - onejan) / 86400000) + onejan.getDay() + 1) / 7);
+    },
+	expand: function (id) {
+		var el = document.getElementById(id);
+		el.parentNode.classList.toggle("active"); 
+		el.classList.toggle("active");
+    },
+    normalTime: function (parseTime) {
+    	var year = parseTime.substring(0, 4);
+    	var month = parseTime.substring(5, 7);
+    	var day = parseTime.substring(8, 10);
+    	return day + "-" + month + "-" + year;
+    }	
 
 };	

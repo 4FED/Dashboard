@@ -57,7 +57,7 @@ body{
 	outline:none;
 }
 
-#login fieldset input[type="button"], #registreer fieldset input[type="button"]{
+#login fieldset input[type="submit"], #registreer fieldset input[type="submit"]{
 	float:right;
 	width:30%;
 	height:2.5em;
@@ -135,8 +135,8 @@ header #profile{
 	margin-top:2em;
 }
 
-header input[type="text"]{
-	background-image:url(../../static/images/icon_search.svg);
+header input[type="search"]{
+	background-image:url(images/icon_search.svg);
 	background-repeat:no-repeat;
 	background-position:center left;
 	background-size:1em;
@@ -168,16 +168,9 @@ header hr{
 
 
 .profile_pic{
-	background-image: url(../images/img_patient_placeholder.svg);
 	width:5em;
 	height:5em;
-	background-size: 4.9em;
-	background-position: center;
-	background-repeat: no-repeat;
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-	background-color:rgba(0,0,0,0.5);
+	background:rgba(0,0,0,0.5);
 	border-radius:50%;
 }
 
@@ -246,7 +239,7 @@ nav button{
 }
 
 nav #logout_btn{
-	background-image:url(../../static/images/icon_logout.svg);
+	background-image:url(images/icon_logout.svg);
 	background-repeat:no-repeat;
 	background-size:1.5em;
 	background-position: center;
@@ -254,7 +247,7 @@ nav #logout_btn{
 }
 
 nav #home_btn{
-	background-image:url(../../static/images/icon_home.svg);
+	background-image:url(images/icon_home.svg);
 	background-repeat:no-repeat;
 	background-size:1.5em;
 	background-position: center;
@@ -274,7 +267,7 @@ nav #logo_02{
 	float:left;
 	width:3.63em;
 	height:3.63em;
-	background-image:url(../../static/images/logo_02.svg);
+	background-image:url(images/logo_02.svg);
 	background-repeat:no-repeat;
 	background-size:3.63em;
 
@@ -321,9 +314,9 @@ nav input[type="search"]:focus{
 	font-size:9pt;
 }
 
-#home ul > li:first-child{
+#home ul li:first-child{
 	background-color:rgba(0,0,0,0.1);
-	background-image:url(../../static/images/icon_add.svg);
+	background-image:url(images/icon_add.svg);
 	background-repeat:no-repeat;
 	background-size:3em;
 	background-position:center 8em;
@@ -335,7 +328,7 @@ nav input[type="search"]:focus{
 
 }
 
-#home ul > li:first-child div{
+#home ul li:first-child div{
 	margin-top:9em;
 	font-size:11pt;
 }
@@ -373,10 +366,10 @@ nav input[type="search"]:focus{
 	border:none;
 	border:0.1em solid rgba(0,0,0,0.15);
 	border-left:none;
-	width: 3.4em;
-	height:3.1em;
+	width:4em;
+	height:3.81em;
 	background-color:rgba(255,255,255,0.7);
-	background-image:url(../../static/images/icon_motivation_02.svg);
+	background-image:url(images/icon_motivation_02.svg);
 	background-repeat:no-repeat;
 	background-size:2.5em;
 	background-position:center;
@@ -384,7 +377,7 @@ nav input[type="search"]:focus{
 
 #home .motivation_btn:active{
 	background-color:#f4f4f4;
-	background-image:url(../../static/images/icon_motivation_01.svg);
+	background-image:url(images/icon_motivation_01.svg);
 	background-repeat:no-repeat;
 	background-size:2.5em;
 	background-position:center;
@@ -519,7 +512,7 @@ nav input[type="search"]:focus{
 	float:right;
 }
 #profile_settings #close{
-	background-image:url(../../static/images/icon_close.svg);
+	background-image:url(images/icon_close.svg);
 	background-size:1.5em;
 	background-repeat:no-repeat;
 	background-position: center;
@@ -616,7 +609,7 @@ nav input[type="search"]:focus{
 	box-shadow:0em 0em 1em rgba(0,0,0,0.2);
 }
 #new_patient #close{
-	background-image:url(../../static/images/icon_close.svg);
+	background-image:url(images/icon_close.svg);
 	background-size:1.5em;
 	background-repeat:no-repeat;
 	background-position: center;
@@ -649,7 +642,7 @@ nav input[type="search"]:focus{
 	background-color:rgba(0,0,0,0.05);
 	border:0.1em solid rgba(0,0,0,0.1);
 	border-radius: 0.5em;
-	background-image:url(../../static/images/icon_search.svg);
+	background-image:url(images/icon_search.svg);
 	background-repeat: no-repeat;
 	background-size:1em;
 	background-origin:padding-box;
@@ -783,7 +776,7 @@ nav input[type="search"]:focus{
 	color:rgba(0,0,0,0.7);
 	padding:1em;
 
-	background-image:url(../../static/images/icon_arrow_bottom_02.svg);
+	background-image:url(images/icon_arrow_bottom_02.svg);
 	background-repeat:no-repeat;
 	background-position:right;
 	background-origin:content-box;
@@ -807,7 +800,7 @@ nav input[type="search"]:focus{
 	color:rgba(0,0,0,0.7);
 	text-align: left;
 	background-color:rgba(255,255,255,0.7);
-	background-image:url(../images/icon_motivation_03.svg);
+	background-image:url(images/icon_motivation_03.svg);
 	background-repeat:no-repeat;
 	background-position:left;
 	background-origin:padding-box;
@@ -838,7 +831,7 @@ nav input[type="search"]:focus{
 #patient_profile ul li{
 	padding:1.5em 1.5em 1.5em 1.5em;
 	border-bottom:0.1em solid rgba(0,0,0,0.1);
-	background-image:url(../../static/images/icon_arrow_right.svg);
+	background-image:url(images/icon_arrow_right.svg);
 	background-repeat:no-repeat;
 	background-position:top right;
 	background-origin:content-box;
@@ -846,19 +839,19 @@ nav input[type="search"]:focus{
 	background-color:#ffffff;
 }
 
-#patient_profile ul > li.active{
-	background-image:url(../../static/images/icon_arrow_bottom.svg);
+#patient_profile ul li:active{
+	background-image:url(images/icon_arrow_bottom.svg);
 	background-size:1.5em;
 }
 
-#patient_profile ul > li:first-child{
+#patient_profile ul li:first-child{
 	background-color:rgba(0,0,0,0.1);
 	font-weight:700;
 	background-image:none;
 	padding-bottom:1.5em;
 }
 
-#patient_profile ul > li:nth-of-type(2){
+#patient_profile ul li:nth-of-type(2){
 	background-color:rgba(255,255,255,0.5);
 	background-image:none;
 	height:2em;
@@ -869,7 +862,7 @@ nav input[type="search"]:focus{
 	font-size:9pt;
 }
 
-#patient_profile ul > li:nth-of-type(2) > p:nth-of-type(2){
+#patient_profile ul li:nth-of-type(2) > p:nth-of-type(2){
 	float:right;	
 }
 
@@ -878,7 +871,7 @@ nav input[type="search"]:focus{
 	margin-right:9.5em;
 }
 
-#patient_profile ul > li:nth-of-type(2) > p:first-of-type{
+#patient_profile ul li:nth-of-type(2) > p:first-of-type{
 	float:left;
 }
 
@@ -886,7 +879,7 @@ nav input[type="search"]:focus{
 	float:right;
 	margin:0;
 	margin-right:4em;
-	font-size: 12pt;
+	font-size:18;
 }
 
 #patient_profile ul li .exposure_fear_status{
@@ -905,13 +898,9 @@ nav input[type="search"]:focus{
 	margin-right:0.5em;
 	float:left;
 }
-.post_fear_level h1{
-	color: rgba(228,84,83,1) !important;
-}
-.pre_fear_level h1{
-	color: rgba(241,110,110,0.5) !important;
-}
+
 #patient_profile .exposure_detail{
+	display:block;
 	background-color:rgba(0,0,0,0.05);
 	margin-top:2em;
 	margin-right:-1.5em;
@@ -957,22 +946,6 @@ nav input[type="search"]:focus{
 	border-top:0.1em solid rgba(0,0,0,0.1);
 	font-weight:700;
 }
-#patient_profile .exposure_detail .experience{
-	border:none;
-	display:block;	
-	padding:1em;
-	border-top:0.1em solid rgba(0,0,0,0.1);
-	font-weight:700;
-}
-#patient_profile .exposure_detail .experience h4{
-	font-size: 14pt;	
-	margin-top: 0.2em;
-	margin-bottom: 0.2em;
-}
-#patient_profile .exposure_detail .experience > i{
-	font-weight: normal;
-	font-size: 12pt;
-}
 
 #patient_profile .exposure_detail .respons_preventie p{
 	font-weight:400;
@@ -988,11 +961,9 @@ nav input[type="search"]:focus{
 }
 
 #patient_profile .exposure_process canvas{
-	/*border:0.1em solid rgba(0,0,0,0.5);*/
+	border:0.1em solid rgba(0,0,0,0.5);
 	width:90%;
 	max-height:11em;
-  	width: 90% !important;
-    max-width: 800px;
 }
 
 #new_motivation{
